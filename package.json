@@ -1,0 +1,18 @@
+{
+	"name": "text-flipper",
+	"version": "1.0.0",
+	"description": "A utility to flip text between English and Hebrew keyboard layouts",
+	"main": "index.js",
+	"scripts": {
+		"start": "node flip.js",
+		"test": "jest"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"clipboardy": "^4.0.0"
+	},
+	"devDependencies": {
+		"jest": "^29.7.0"
+	}
+}
