@@ -17,7 +17,7 @@ A standalone Ubuntu utility that flips selected text between English (US QWERTY)
 
 ## System Integration (Ubuntu)
 
-To use the global shortcut (`Alt+Shift+W`) to flip text:
+The global shortcut (`Ctrl+Alt+A`) flips selected text between English and Hebrew layouts.
 
 1. Go to **Settings** -> **Keyboard**.
 2. Click **View and Customize Shortcuts**.
@@ -27,6 +27,23 @@ To use the global shortcut (`Alt+Shift+W`) to flip text:
    - **Command:** `bash -i -c "node /home/stav/Projects/text-flipper/flip.js"`
      *(Note: Using `bash -i -c` ensures that your NVM environment is loaded correctly.)*
    - **Shortcut:** `Alt+Shift+W` (or your preferred shortcut)
+The shortcut runs the runner script:
+```bash
+/home/stav/.local/bin/text-flipper
+```
+(which symlinks to `/home/stav/Projects/text-flipper/run.sh`).
+
+### Wayland & X11 Compatibility
+- On **Wayland**, key emulation uses `ydotool` (via background `ydotoold`), ensuring reliable cross-application clipboard simulation.
+- On **X11**, key emulation automatically falls back to `xdotool`.
+- If an error occurs during flipping, a desktop notification is sent via `notify-send`.
+
+To configure or update the shortcut manually via GNOME CLI:
+```bash
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/text-flipper/ name 'Text Flipper'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/text-flipper/ command '/home/stav/.local/bin/text-flipper'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/text-flipper/ binding '<Control><Alt>a'
+```
 
 ## How to Use
 
